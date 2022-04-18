@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { createContext, useState } from "react";
 
-export default function CursorManager() {
+export const CursorContext = createContext({
+  size: "small",
+  setSize: () => { },
+});
+export default function CursorManager(props) {
+  const [size, setSize] = useState("small");
   return (
-    <div>CursorManager</div>
-  )
+    <CursorContext.Provider value={{ size, setSize }}>
+      {props.children}
+    </CursorContext.Provider>
+  );
 }
